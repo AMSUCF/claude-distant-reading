@@ -651,6 +651,17 @@ class DistantReadingApp {
         const overlapPercent1 = ((overlap.size / vocab1.size) * 100).toFixed(1);
         const overlapPercent2 = ((overlap.size / vocab2.size) * 100).toFixed(1);
 
+        // Get overlapping words with combined frequencies
+        const overlapWords = [...overlap].map(word => ({
+            word: word,
+            freq1: text1.word_frequencies[word],
+            freq2: text2.word_frequencies[word],
+            totalFreq: text1.word_frequencies[word] + text2.word_frequencies[word]
+        })).sort((a, b) => b.totalFreq - a.totalFreq);
+
+        // Take top 100 overlapping words for display
+        const topOverlapWords = overlapWords.slice(0, 100);
+
         container.innerHTML = `
             <div class="vocabulary-stats">
                 <div class="vocab-stat">
@@ -670,6 +681,16 @@ class DistantReadingApp {
                 Overlap: ${overlapPercent1}% of "${text1.metadata.title}" vocabulary,
                 ${overlapPercent2}% of "${text2.metadata.title}" vocabulary
             </p>
+            <div class="mt-4">
+                <h5 class="mb-3">Top ${topOverlapWords.length} Shared Words (by frequency)</h5>
+                <div class="overlap-words-container">
+                    ${topOverlapWords.map(w => `
+                        <span class="overlap-word" title="${w.word}: ${w.freq1} + ${w.freq2} = ${w.totalFreq} occurrences">
+                            ${w.word}
+                        </span>
+                    `).join('')}
+                </div>
+            </div>
         `;
     }
 
