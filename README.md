@@ -65,17 +65,19 @@ This project provides automated analysis and interactive visualization of a corp
 
 The corpus contains 9 science fiction short stories from Project Gutenberg:
 
-1. **There Will Be School Tomorrow** by V. E. Thiessen
-2. **Beside Still Waters** (Author TBD)
-3. **Service with a Smile** (Author TBD)
-4. **Robots of the World! Arise!** (Author TBD)
-5. **Second Variety** by Philip K. Dick
-6. **His Master's Voice** (Author TBD)
-7. **The Miserly Robot** (Author TBD)
-8. **Let's Get Together** (Author TBD)
-9. **My robot** (Author TBD)
+1. **There Will Be School Tomorrow** by V. E. Thiessen (pg29317)
+2. **Beside Still Waters** by Robert Sheckley (pg29446)
+3. **Service with a Smile** by Charles L. Fontenay (pg30371)
+4. **Robots of the World! Arise!** by Mari Wolf (pg31611)
+5. **Second Variety** by Philip K. Dick (pg32032)
+6. **His Master's Voice** by Randall Garrett (pg48513)
+7. **The Miserly Robot** by R. J. Rice (pg65128)
+8. **Let's Get Together** by Isaac Asimov (pg68377)
+9. **My robot** by Henry Slesar (pg73577)
 
-Total corpus size: ~11,446 lines
+Notable authors in this collection include **Isaac Asimov** (one of the "Big Three" of science fiction), **Philip K. Dick** (influential cyberpunk pioneer), and **Robert Sheckley** (renowned for satirical science fiction).
+
+Total corpus size: ~11,446 lines across 9 texts
 
 ## Project Structure
 
