@@ -86,17 +86,62 @@ The texts in this corpus appear to be science fiction. Keep this genre in mind w
 - Interpreting themes and topics
 - Comparing against other corpora or baseline language models
 
+## Analysis System
+
+This repository includes a complete distant reading analysis system:
+
+### Python Analysis (`analyze_corpus.py`)
+Automated analysis script that processes all texts and generates JSON output:
+- **Dependencies**: spaCy, NLTK, VADER, scikit-learn (see `requirements.txt`)
+- **Setup**: `python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt`
+- **Run**: `venv/bin/python analyze_corpus.py`
+- **Output**: `corpus_analysis.json` with complete analysis for all texts
+
+The script performs:
+1. **Preprocessing**: Tokenization, lemmatization with NLTK, stopword filtering
+2. **Bag of Words**: Top 50 words with frequencies for each text
+3. **Sentiment Analysis**: VADER sentiment scores (compound, positive, negative, neutral)
+4. **Style Metrics**: Type-token ratio, vocabulary richness, average word/sentence length
+5. **Topic Modeling**: LDA to extract 3 topics per text with top 8 words each
+
+### Web Interface (`index.html`)
+Interactive visualization dashboard using D3.js and Bootstrap:
+- **Access**: Open `index.html` in a web browser (requires local server for JSON loading)
+- **Simple server**: `python3 -m http.server 8000` then visit `http://localhost:8000`
+
+Features:
+- **Browse View**: Explore individual texts with word clouds, sentiment charts, style metrics, and topics
+- **Compare View**: Side-by-side comparison of any two texts with vocabulary overlap analysis
+- **Visualizations**: D3.js word clouds, bar charts for sentiment, style comparison charts
+
+### Project Structure
+```
+/
+├── pg*.txt (9 files)           # Project Gutenberg source texts
+├── analyze_corpus.py           # Python analysis script
+├── corpus_analysis.json        # Generated analysis data
+├── index.html                  # Web interface
+├── styles.css                  # Custom styling
+├── app.js                      # D3.js visualizations
+├── requirements.txt            # Python dependencies
+├── .gitignore                  # Python artifacts
+├── venv/                       # Virtual environment (gitignored)
+└── CLAUDE.md                   # This file
+```
+
 ## Development Workflow
 
-Since this is a text corpus without build/test infrastructure:
-1. Create analysis scripts in the repository root or a dedicated directory (e.g., `scripts/`, `analysis/`)
-2. Use virtual environments for Python dependencies: `python -m venv venv && source venv/bin/activate`
-3. Document analysis results in markdown files or Jupyter notebooks
-4. Consider adding a `requirements.txt` for any analysis dependencies
+### Running Analysis
+1. Activate virtual environment: `source venv/bin/activate`
+2. Run analysis: `python analyze_corpus.py`
+3. View results in web interface: `python -m http.server 8000`
 
-## File Naming Convention
+### Modifying Analysis
+- Edit `analyze_corpus.py` to change analysis parameters or add new metrics
+- Update `app.js` to add new visualizations or modify existing ones
+- Rerun analysis script to regenerate `corpus_analysis.json`
 
-When adding analysis code or results:
-- Scripts: Use descriptive names like `word_frequency.py`, `topic_modeling.py`
-- Results: Use prefixes like `results_`, `analysis_`, or organize in subdirectories
-- Keep the original `pg*.txt` files unchanged to preserve the source corpus
+### Adding New Texts
+1. Add new `pg*.txt` files to the root directory
+2. Rerun `analyze_corpus.py` to include them in analysis
+3. Web interface will automatically display new texts
